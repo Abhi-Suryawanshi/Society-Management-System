@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head(title='Announcements')">
+</head>
+<body>
+    <nav th:replace="layout :: nav"></nav>
+
+    <div class="container mt-4">
+        <h2>Announcements</h2>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Create New Announcement</h4>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/admin/announcements}" th:object="${newAnnouncement}" method="post">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" th:field="*{title}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" th:field="*{content}" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Publish Announcement</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>All Announcements</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Published On</th>
+                                <th>Published By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="announcement : ${announcements}">
+                                <td th:text="${announcement.title}"></td>
+                                <td th:text="${announcement.content}"></td>
+                                <td th:text="${#temporals.format(announcement.createdAt, 'dd MMM yyyy HH:mm')}"></td>
+                                <td th:text="${announcement.createdBy}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>

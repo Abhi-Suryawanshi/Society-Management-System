@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: head(title='Admin Dashboard')">
+</head>
+<body>
+    <nav th:replace="layout :: nav"></nav>
+
+    <div class="container mt-4">
+        <h2>Admin Dashboard</h2>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Announcements</h5>
+                        <p class="card-text">Manage society announcements</p>
+                        <a th:href="@{/admin/announcements}" class="btn btn-light">Go to Announcements</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Facilities</h5>
+                        <p class="card-text">Manage society facilities</p>
+                        <a th:href="@{/admin/facilities}" class="btn btn-light">Go to Facilities</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Bookings</h5>
+                        <p class="card-text">Manage facility bookings</p>
+                        <a th:href="@{/admin/bookings}" class="btn btn-light">Go to Bookings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Complaints</h5>
+                        <p class="card-text">Manage resident complaints</p>
+                        <a th:href="@{/admin/complaints}" class="btn btn-light">Go to Complaints</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Maintenance</h5>
+                        <p class="card-text">Manage maintenance records</p>
+                        <a th:href="@{/admin/maintenance}" class="btn btn-light">Go to Maintenance</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Users</h5>
+                        <p class="card-text">Manage resident accounts</p>
+                        <a th:href="@{/admin/users}" class="btn btn-light">Go to Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>

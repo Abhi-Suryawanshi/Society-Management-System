@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: head(title='Resident Dashboard')">
+</head>
+<body>
+    <nav th:replace="layout :: nav"></nav>
+
+    <div class="container mt-4">
+        <h2>Welcome, <span th:text="${user.fullName}"></span></h2>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Announcements</h5>
+                        <p class="card-text">View society announcements</p>
+                        <a th:href="@{/resident/announcements}" class="btn btn-light">View Announcements</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Facilities</h5>
+                        <p class="card-text">Book society facilities</p>
+                        <a th:href="@{/resident/facilities}" class="btn btn-light">View Facilities</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Bookings</h5>
+                        <p class="card-text">View your bookings</p>
+                        <a th:href="@{/resident/bookings}" class="btn btn-light">View Bookings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Complaints</h5>
+                        <p class="card-text">Raise complaints</p>
+                        <a th:href="@{/resident/complaints}" class="btn btn-light">View Complaints</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card text-white bg-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Maintenance</h5>
+                        <p class="card-text">View maintenance</p>
+                        <a th:href="@{/resident/maintenance}" class="btn btn-light">View Maintenance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>

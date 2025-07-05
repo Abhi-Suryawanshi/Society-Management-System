@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head(title='My Bookings')">
+</head>
+<body>
+    <nav th:replace="layout :: nav"></nav>
+
+    <div class="container mt-4">
+        <h2>My Bookings</h2>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>New Booking</h4>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/resident/bookings}" th:object="${newBooking}" method="post">
+                    <div class="mb-3">
+                        <label for="facilityId" class="form-label">Facility</label>
+                        <select class="form-select" id="facilityId" th:field="*{facilityId}" required>
+                            <option value="">Select Facility</option>
+                            <option th:each="facility : ${facilities}" 
+                                    th:value="${facility.id}" 
+                                    th:text="${facility.name}"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bookingDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="bookingDate" th:field="*{bookingDate}" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="startTime" class="form-label">Start Time</label>
+                            <input type="time" class="form-control" id="startTime" th:field="*{startTime}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="endTime" class="form-label">End Time</label>
+                            <input type="time" class="form-control" id="endTime" th:field="*{endTime}" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Book Facility</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>My Bookings</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Facility</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="booking : ${bookings}">
+                                <td th:text="${booking.facilityName}"></td>
+                                <td th:text="${#temporals.format(booking.bookingDate, 'dd MMM yyyy')}"></td>
+                                <td>
+                                    <span th:text="${#temporals.format(booking.startTime, 'HH:mm')}"></span> - 
+                                    <span th:text="${#temporals.format(booking.endTime, 'HH:mm')}"></span>
+                                </td>
+                                <td>
+                                    <span th:switch="${booking.status}">
+                                        <span th:case="'PENDING'" class="badge bg-warning">Pending</span>
+                                        <span th:case="'APPROVED'" class="badge bg-success">Approved</span>
+                                        <span th:case="'REJECTED'" class="badge bg-danger">Rejected</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>
